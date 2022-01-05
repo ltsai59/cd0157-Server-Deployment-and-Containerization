@@ -1,5 +1,4 @@
-# FROM python:stretch
-FROM python:3.7.5-slim
+FROM python:stretch
 COPY . /app
 WORKDIR /app
 

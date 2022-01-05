@@ -21,15 +21,17 @@ phases:
       # - python -m pip install --upgrade --force pip
       # - apt-get update && apt-get -y install jq  && pip install --upgrade awscli
       - apt-get update && apt-get -y install jq python3-pip python3-dev && pip3 install --upgrade awscli
-      # - apt-get update && apt-get -y install jq && pip install --upgrade awscli
       - pip3 install --upgrade botocore==1.21.57
       - pip3 install typing
 
   pre_build:
       commands:
-        # - pip3 install setuptools==44.1.1
+        # Begin: Uncomment below for testing
+        - pip3 install --user pipenv
+        - pip3 install setuptools==44.1.1
         - pip3 install -r requirements.txt 
         - python -m pytest test_main.py
+        # End: Uncomment above for testing
         - TAG="$REPOSITORY_NAME.$REPOSITORY_BRANCH.$ENVIRONMENT_NAME.$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
         - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' simple_jwt_api.yml
         - $(aws ecr get-login --no-include-email)
