@@ -27,7 +27,7 @@ phases:
 
   pre_build:
       commands:
-        - python3.7 get-pip.py
+        - sudo apt install python3.7
         - pip3 install -U setuptools==44.1.1
         - pip3 install -U -r requirements.txt 
         - python -m pytest test_main.py
