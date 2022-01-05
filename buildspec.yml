@@ -4,8 +4,8 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      python: 3.7
+    # runtime-versions:
+    #   python: 3.7
     commands:
       - echo 'about to call dockerd'
       - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2&
@@ -27,8 +27,8 @@ phases:
 
   pre_build:
       commands:
-        - pip3 install -U --upgrade setuptools
-        - pip3 install -U -r requirements.txt 
+        # - pip3 install -U --upgrade setuptools
+        - pip install -U -r requirements.txt 
         - python -m pytest test_main.py
         - TAG="$REPOSITORY_NAME.$REPOSITORY_BRANCH.$ENVIRONMENT_NAME.$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
         - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' simple_jwt_api.yml
