@@ -5,7 +5,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      python: 3.7
+      python: 3.6
     commands:
       - echo 'about to call dockerd'
       - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2&
@@ -27,8 +27,7 @@ phases:
 
   pre_build:
       commands:
-        - sudo apt install python3.7
-        - pip3 install -U setuptools==44.1.1
+        # - pip3 install -U setuptools==44.1.1
         - pip3 install -U -r requirements.txt 
         - python -m pytest test_main.py
         - TAG="$REPOSITORY_NAME.$REPOSITORY_BRANCH.$ENVIRONMENT_NAME.$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
