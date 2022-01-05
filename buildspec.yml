@@ -23,6 +23,7 @@ phases:
       - apt-get update && apt-get -y install jq python3-pip python3-dev && pip3 install --upgrade awscli
       # - apt-get update && apt-get -y install jq && pip install --upgrade awscli
       - pip3 install --upgrade botocore==1.21.57
+      - pip3 install typing
 
   pre_build:
       commands:
