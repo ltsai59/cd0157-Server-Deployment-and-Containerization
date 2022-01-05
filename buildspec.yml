@@ -28,7 +28,7 @@ phases:
   pre_build:
       commands:
         - pip3 install --upgrade pip
-        - pip3 install -upgrade setuptools
+        - pip3 install --upgrade setuptools
         - pip3 install -U -r requirements.txt 
         - python -m pytest test_main.py
         - TAG="$REPOSITORY_NAME.$REPOSITORY_BRANCH.$ENVIRONMENT_NAME.$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
