@@ -1,4 +1,4 @@
-pywin32>=3.0;platform_system == "Windows"
+pywin32>=3.0,platform_system == "Windows"
 pyjwt==1.7.1
 flask==1.1.2
 gunicorn==20.0.4
